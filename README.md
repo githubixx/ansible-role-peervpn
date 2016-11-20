@@ -1,4 +1,4 @@
-Role Name
+peervpn
 =========
 
 Ansible role to setup PeerVPN for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
