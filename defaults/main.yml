@@ -1,0 +1,18 @@
+---
+peervpn_version: "peervpn-0-044"
+peervpn_install_directory: "/opt/{{peervpn_version}}"
+peervpn_dest: "/usr/local/sbin"
+peervpn_conf_networkname: "peervpn"
+peervpn_conf_psk: "default"
+peervpn_conf_enabletunneling: "yes"
+peervpn_conf_interface: "tap0"
+peervpn_conf_local: "0.0.0.0"
+peervpn_conf_port: 7000
+peervpn_conf_ifconfig4: "10.0.0.1/24"
+peervpn_conf_sockmark: 0
+peervpn_conf_enableipv4: "yes"
+peervpn_conf_enablenat64clat: "no"
+peervpn_conf_enablerelay: "no"
+peervpn_conf_enableprivdrop: "yes"
+peervpn_conf_user: "nobody"
+peervpn_conf_group: "nogroup"

@@ -1,0 +1,13 @@
+[Unit]
+Description=PeerVPN network service
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/peervpn/peervpn.conf
+
+[Service]
+Type=simple
+ExecStart={{peervpn_dest}}/peervpn /etc/peervpn/peervpn.conf
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,75 @@
+---
+- name: Create PeerVPN install directory
+  file:
+    path: "{{peervpn_install_directory}}/{{peervpn_version}}"
+    owner: root
+    group: root
+    mode: 0700
+    state: directory
+  tags:
+    - peervpn
+
+- name: Download statically linked Linux binary
+  get_url:
+    url: https://peervpn.net/files/{{peervpn_version}}-linux-x86.tar.gz
+    dest: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
+    mode: 0440
+  tags:
+    - peervpn
+
+- name: Unzip downloaded PeerVPN file
+  unarchive:
+    src: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
+    dest: "{{peervpn_install_directory}}"
+    remote_src: yes
+    creates: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
+  tags:
+    - peervpn
+
+- name: Copy binary to destination directory
+  copy:
+    src: "{{peervpn_install_directory}}/{{peervpn_version}}/peervpn"
+    dest: "{{peervpn_dest}}/peervpn"
+    mode: 0755
+    remote_src: yes
+  tags:
+    - peervpn
+
+- name: Copy PeerVPN systemd service file
+  template:
+    src: etc/systemd/system/peervpn.service.j2
+    dest: /etc/systemd/system/peervpn.service
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - peervpn
+
+- name: Create PeerVPN configuration directory
+  file:
+    path: /etc/peervpn
+    owner: root
+    group: root
+    mode: 0700
+    state: directory
+  tags:
+    - peervpn
+
+- name: Copy PeerVPN configuration file
+  template:
+    src: etc/peervpn/peervpn.conf.j2
+    dest: /etc/peervpn/peervpn.conf
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - peervpn
+
+- name: Enable and start PeerVPN
+  systemd:
+    name: peervpn
+    enabled: yes
+    state: started
+    daemon_reload: yes
+  tags:
+    - peervpn
