@@ -1,7 +1,7 @@
 peervpn
 =========
 
-Ansible role to setup PeerVPN for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
+Ansible role to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
 
 PeerVPN installes it's own TAP interface for it's purpose. The default name of that TAP interface is `tap0`. To change the name specify a different value for `peervpn_conf_interface` variable.
 
