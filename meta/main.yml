@@ -1,6 +1,6 @@
 galaxy_info:
   author: Robert Wimmer
-  description: https://github.com/githubixx/
+  description: Installes PeerVPN on a node
   license: license (GPLv2, CC-BY, etc)
   min_ansible_version: 2.2
   platforms:
@@ -11,3 +11,4 @@ galaxy_info:
     - vpn
     - networking
     - security
+    - peervpn
