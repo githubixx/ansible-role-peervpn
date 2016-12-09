@@ -4,7 +4,7 @@
     path: "{{peervpn_install_directory}}/{{peervpn_version}}"
     owner: root
     group: root
-    mode: 0700
+    mode: 0755
     state: directory
   tags:
     - peervpn
