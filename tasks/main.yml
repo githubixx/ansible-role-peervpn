@@ -22,7 +22,7 @@
     src: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
     dest: "{{peervpn_install_directory}}"
     remote_src: yes
-    creates: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
+    creates: "{{peervpn_install_directory}}/{{peervpn_version}}/peervpn"
   tags:
     - peervpn
 
