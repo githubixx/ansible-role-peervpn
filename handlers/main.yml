@@ -1,2 +1,6 @@
 ---
-# handlers file for peervpn
+
+- name: Restart PeerVPN
+  service:
+    name: peervpn
+    state: restarted
