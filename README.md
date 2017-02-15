@@ -1,11 +1,13 @@
 peervpn
-=========
+=======
+
+This Ansible playbook is used in [Kubernetes the not so hard way with Ansible (at scaleway) - part 3 - peervpn](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-3/).
 
 Ansible role to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
 
 PeerVPN installes it's own TAP interface for it's purpose. The default name of that TAP interface is `tap0`. To change the name specify a different value for `peervpn_conf_interface` variable.
 
-To generate a strong secret password for your PeerVPN preshared key use:
+To generate a strong secret password for your PeerVPN preshared key you can use:
 
 ```
 openssl rand -base64 382 | tr -d '\n' && echo
@@ -20,7 +22,7 @@ Allow traffic on port 7000 protocol UDP (default) if you have firewall rules ins
 Role Variables
 --------------
 
-Basically you only need to change very few variables (see below). But have a look at `templates/etc/peervpn/peervpn.conf.j2` for examples an full description of the variables.
+Basically you only need to change very few variables (see below). But have a look at `templates/etc/peervpn/peervpn.conf.j2` for examples and full description of the variables.
 
 Variables with NO default values:
 ```
@@ -51,6 +53,7 @@ peervpn_conf_enableprivdrop: "yes"
 peervpn_conf_user: "nobody"
 peervpn_conf_group: "nogroup"
 ```
+
 You MUST specify a value for `peervpn_conf_initpeers` to make any use of PeerVPN (either per host in Ansible `host_vars` directory or per host group in `group_vars` directory. E.g. if you specify `peervpn_conf_initpeers: "host.example.net 7000"` PeerVPN tries to connect to `host.example.net` on port `7000` via UDP to setup a connection.
 
 You should at least change the following variables:
@@ -78,4 +81,4 @@ GNU GENERAL PUBLIC LICENSE Version 3
 Author Information
 ------------------
 
-http://www.tauceti.net
+[http://www.tauceti.blog](http://www.tauceti.blog)
