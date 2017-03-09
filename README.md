@@ -1,9 +1,7 @@
-peervpn
+PeerVPN
 =======
 
-This Ansible playbook is used in [Kubernetes the not so hard way with Ansible (at scaleway) - part 3 - peervpn](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-3/).
-
-Ansible role to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
+This Ansible role is used in [Kubernetes the not so hard way with Ansible (at Scaleway) - Part 3 - PeerVPN](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-3/). Used to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
 
 PeerVPN installes it's own TAP interface for it's purpose. The default name of that TAP interface is `tap0`. To change the name specify a different value for `peervpn_conf_interface` variable.
 
@@ -12,7 +10,7 @@ To generate a strong secret password for your PeerVPN preshared key you can use:
 ```
 openssl rand -base64 382 | tr -d '\n' && echo
 ```
-Since it's a preshared key this key MUST be used on all host where you install PeerVPN and use the same network name. Otherwise connection won't work. The default preshared key is `default` which you want to change of course ;-)
+Since it's a preshared key this key MUST be used on all hosts where you install PeerVPN and use the same network name. Otherwise connection won't work. The default preshared key is `default` which you want to change of course ;-)
 
 Requirements
 ------------
@@ -60,7 +58,7 @@ You should at least change the following variables:
 
 `peervpn_conf_initpeers`: The hostname and port PeerVPN should connect to become part of the VPN.
 `peervpn_conf_networkname`: The name of your VPN.
-`peervpn_conf_psk`: How to generate a good preshared key password see introduction above.
+`peervpn_conf_psk`: Preshared key. How to generate a good preshared key password see introduction above.
 `peervpn_conf_ifconfig4`: The IP address of the node and subnet in CIDR notation. This variables needs to be specified per host of course.
 
 Example Playbook
@@ -68,7 +66,6 @@ Example Playbook
 
 ```
 - hosts: webservers
-
   roles:
     - peervpn
 ```
