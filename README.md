@@ -1,7 +1,7 @@
 role-peervpn
 ============
 
-This Ansible role is used in [Kubernetes the not so hard way with Ansible (at Scaleway) - Part 3 - PeerVPN](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-3/). Used to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port 7000 protocol UDP). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
+This Ansible role is used in [Kubernetes the not so hard way with Ansible (at Scaleway) - Part 3 - PeerVPN](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-3/). Used to setup [PeerVPN](https://peervpn.net/) for Ubuntu 16.04/18.04 (but should basically work with all Linux OS that use systemd). With PeerVPN you can easily setup a fully meshed VPN across datacenter and all nodes you like. You only need at least one host with a public reachable interface (default is Port `7000` protocol `UDP`). One simple configration could be that you use this public reachable host for your `peervpn_conf_initpeers` setting. Finding the other hosts on your VPN will be automagically done by PeerVPN.
 
 PeerVPN installes it's own TAP interface for it's purpose. The default name of that TAP interface is `tap0`. To change the name specify a different value for `peervpn_conf_interface` variable.
 
@@ -15,7 +15,7 @@ Since it's a preshared key this key MUST be used on all hosts where you install 
 Versions
 --------
 
-I tag every release and try to stay with [semantic versioning](http://semver.org). If you want to use the role I recommend to checkout the latest tag. The master branch is basically development while the tags mark stable releases. But in general I try to keep master in good shape too. A tag `v1.0.0_r044` means this is release 1.0.0 of this role and it uses PeerVPN r044. If the role itself changes `rX.Y.Z` will increase. If the PeerVPN version changes `rXXX` will increase. This allows to tag bugfixes and new major versions of the role while it's still developed for a specific PeerVPN release.
+I tag every release and try to stay with [semantic versioning](http://semver.org). If you want to use the role I recommend to checkout the latest tag. The master branch is basically development while the tags mark stable releases. But in general I try to keep master in good shape too. A tag `1.0.0+r044` means this is release `1.0.0` of this role and it uses PeerVPN `r044`. If the role itself changes `X.Y.Z` will increase. If the PeerVPN version changes `rXXX` will increase and also the role patch level will increase (e.g. `1.0.0` -> `1.0.1`). This allows to tag bugfixes and new major versions of the role while it's still developed for a specific PeerVPN release.
 
 Requirements
 ------------

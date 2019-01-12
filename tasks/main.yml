@@ -1,7 +1,7 @@
 ---
 - name: Create PeerVPN install directory
   file:
-    path: "{{peervpn_install_directory}}/{{peervpn_version}}"
+    path: "{{ peervpn_install_directory }}/{{ peervpn_version }}"
     owner: root
     group: root
     mode: 0755
@@ -11,25 +11,25 @@
 
 - name: Download statically linked Linux binary
   get_url:
-    url: https://peervpn.net/files/{{peervpn_version}}-linux-x86.tar.gz
-    dest: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
+    url: "https://peervpn.net/files/{{ peervpn_version }}-linux-x86.tar.gz"
+    dest: "{{ peervpn_install_directory }}/{{ peervpn_version }}.tar.gz"
     mode: 0440
   tags:
     - peervpn
 
 - name: Unzip downloaded PeerVPN file
   unarchive:
-    src: "{{peervpn_install_directory}}/{{peervpn_version}}.tar.gz"
-    dest: "{{peervpn_install_directory}}"
+    src: "{{ peervpn_install_directory }}/{{ peervpn_version }}.tar.gz"
+    dest: "{{ peervpn_install_directory }}"
     remote_src: yes
-    creates: "{{peervpn_install_directory}}/{{peervpn_version}}/peervpn"
+    creates: "{{ peervpn_install_directory }}/{{ peervpn_version }}/peervpn"
   tags:
     - peervpn
 
 - name: Copy binary to destination directory
   copy:
-    src: "{{peervpn_install_directory}}/{{peervpn_version}}/peervpn"
-    dest: "{{peervpn_dest}}/peervpn"
+    src: "{{ peervpn_install_directory }}/{{ peervpn_version }}/peervpn"
+    dest: "{{ peervpn_dest }}/peervpn"
     mode: 0755
     remote_src: yes
   tags:
